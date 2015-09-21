@@ -1,7 +1,7 @@
 PROJECT := $(notdir $(CURDIR))
 DEPS = cowboy
 dep_cowboy = git https://github.com/ninenines/cowboy master
-include ../erlang.mk
+include ../resources/make/erlang.mk
 
 
 all::
