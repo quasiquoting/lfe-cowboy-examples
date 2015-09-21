@@ -1,12 +1,8 @@
 * LFE Cowboy Examples
 
-#+ATTR_HTML: :height 160 :style float:left
-[[http://ninenines.eu/img/projects/cowboy-home.png]]
-
-#+ATTR_HTML: :height 160 :style float:left
-[[http://lfe.io/assets/images/other_images/LispFlavoredErlang-small-square.png]]
-
 #+BEGIN_HTML
+<img src="http://ninenines.eu/img/projects/cowboy-home.png" height=160 style="float:left">
+<img src="http://lfe.io/assets/images/other_images/LispFlavoredErlang-small-square.png" height=160 style="float:left">
 <br style="clear:both;" />
 #+END_HTML
 
