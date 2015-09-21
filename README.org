@@ -1,12 +1,11 @@
 * LFE Cowboy Examples
+[[https://github.com/rvirding/lfe][LFE]] ports of the [[https://github.com/ninenines/cowboy][Cowboy]] [[https://github.com/ninenines/cowboy/tree/master/examples][examples]].
 
 #+BEGIN_HTML
 <img src="http://ninenines.eu/img/projects/cowboy-home.png" height=160 style="float:left">
 <img src="http://lfe.io/assets/images/other_images/LispFlavoredErlang-small-square.png" height=160 style="float:left">
 <br style="clear:both;" />
 #+END_HTML
-
-[[https://github.com/rvirding/lfe][LFE]] ports of the [[https://github.com/ninenines/cowboy][Cowboy]] [[https://github.com/ninenines/cowboy/tree/master/examples][examples]].
 
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/echo-get][echo-get]]: parse and echo a GET query string
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/hello-world][hello-world]]: simplest example application
