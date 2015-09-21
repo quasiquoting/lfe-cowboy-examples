@@ -1,0 +1,51 @@
+* Hello world example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/hello-world-example/bin/hello-world-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s hello-world # make dev
+#+END_SRC
+*See also*: [[https://github.com/yurrriq/lfe-cowboy-examples/blob/master/common.mk][common.mk]]
+
+** Usage
+Point your browser at [[http://localhost:8080]].
+
+** Example output
+#+BEGIN_SRC fish
+http -v :8080
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-length: 12
+content-type: text/plain
+date: Mon, 21 Sep 2015 03:26:46 GMT
+server: Cowboy
+#+END_SRC
+#+BEGIN_EXAMPLE
+Hello world!
+#+END_EXAMPLE
