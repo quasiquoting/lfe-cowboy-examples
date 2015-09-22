@@ -8,4 +8,4 @@ all::
 	mkdir -p ebin && lfec -o ebin src/*.lfe
 
 dev:
-	lfe -pa ebin -pa deps/*/ebin -s $(PROJECT)
+	lfe -pa $(CURDIR)/ebin -pa $(CURDIR)deps/*/ebin -s $(PROJECT)
