@@ -1,0 +1,113 @@
+* REST hello world example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/rest-hello-world-example/bin/rest-hello-world-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s rest-hello-world # make dev
+#+END_SRC
+*See also*: [[https://github.com/yurrriq/lfe-cowboy-examples/blob/master/common.mk][common.mk]]
+
+** Usage
+Point your browser at [[http://localhost:8080]], or use ~http~ to see the chunks
+arriving one at a time every second.
+
+** Example output
+*** Request HTML
+#+BEGIN_SRC fish
+http -v :8080
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-length: 139
+content-type: text/html
+date: Mon, 21 Sep 2015 23:58:39 GMT
+server: Cowboy
+vary: accept
+#+END_SRC
+#+BEGIN_SRC html
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>REST Hello world!</title>
+</head>
+<body>
+  <p>REST Hello world as HTML!</p>
+</body>
+</html>
+#+END_SRC
+
+*** Request JSON
+#+BEGIN_SRC fish
+http -vj :8080
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Type: application/json
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-length: 24
+content-type: application/json
+date: Tue, 22 Sep 2015 00:00:00 GMT
+server: Cowboy
+vary: accept
+#+END_SRC
+#+BEGIN_SRC json
+{
+  "rest": "Hello World!"
+}
+#+END_SRC
+
+*** Request plain text
+#+BEGIN_SRC fish
+http -v :8080 Accept:text/plain
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: text/plain
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-length: 25
+content-type: text/plain
+date: Tue, 22 Sep 2015 00:01:14 GMT
+server: Cowboy
+vary: accept
+#+END_SRC
+#+BEGIN_EXAMPLE
+REST Hello World as text!
+#+END_EXAMPLE
