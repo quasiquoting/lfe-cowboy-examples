@@ -1,0 +1,96 @@
+* Compressed response example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/compress-response-example/bin/compress-response-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s compress-response # make dev
+#+END_SRC
+*See also*: [[https://github.com/yurrriq/lfe-cowboy-examples/blob/master/common.mk][common.mk]]
+
+** Usage
+Point your browser at [[http://localhost:8080]].
+
+** Example output
+*** Without compression
+#+BEGIN_SRC fish
+http -v :8080 Accept-Encoding:
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding:
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-length: 909
+date: Tue, 13 Oct 2015 23:32:24 GMT
+server: Cowboy
+#+END_SRC
+#+BEGIN_EXAMPLE
+A cowboy is an animal herder who tends cattle on ranches in North America,
+traditionally on horseback, and often performs a multitude of other ranch-
+related tasks. The historic American cowboy of the late 19th century arose
+from the vaquero traditions of northern Mexico and became a figure of special
+significance and legend. A subtype, called a wrangler, specifically tends the
+horses used to work cattle. In addition to ranch work, some cowboys work for
+or participate in rodeos. Cowgirls, first defined as such in the late 19th
+century, had a less-well documented historical role, but in the modern world
+have established the ability to work at virtually identical tasks and obtained
+considerable respect for their achievements. There are also cattle handlers
+in many other parts of the world, particularly South America and Australia,
+who perform work similar to the cowboy in their respective nations.
+#+END_EXAMPLE
+
+*** With compression
+#+BEGIN_SRC fish
+http -v :8080 # Accept-Encoding:gzip
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-encoding: gzip
+content-length: 510
+date: Tue, 13 Oct 2015 23:33:35 GMT
+server: Cowboy
+#+END_SRC
+#+BEGIN_EXAMPLE
+A cowboy is an animal herder who tends cattle on ranches in North America,
+traditionally on horseback, and often performs a multitude of other ranch-
+related tasks. The historic American cowboy of the late 19th century arose
+from the vaquero traditions of northern Mexico and became a figure of special
+significance and legend. A subtype, called a wrangler, specifically tends the
+horses used to work cattle. In addition to ranch work, some cowboys work for
+or participate in rodeos. Cowgirls, first defined as such in the late 19th
+century, had a less-well documented historical role, but in the modern world
+have established the ability to work at virtually identical tasks and obtained
+considerable respect for their achievements. There are also cattle handlers
+in many other parts of the world, particularly South America and Australia,
+who perform work similar to the cowboy in their respective nations.
+#+END_EXAMPLE
