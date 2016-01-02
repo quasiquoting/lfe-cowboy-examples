@@ -1,0 +1,58 @@
+* POST parameter echo example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/echo-post-example/bin/echo-post-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s echo-post # make dev
+#+END_SRC
+*See also*: [[https://github.com/yurrriq/lfe-cowboy-examples/blob/master/common.mk][common.mk]]
+
+** Usage
+As this example echoes a POST parameter, it is a little more complex to
+test. Some browsers feature tools that allow you to perform one such request, or
+you can use the command line tool `http` as we will demonstrate.
+
+** Example output
+#+BEGIN_SRC fish
+http -vf POST :8080 echo=echomeplz | pbcopy
+#+END_SRC
+#+BEGIN_SRC http
+POST / HTTP/1.1
+Content-Length: 14
+Accept-Encoding: gzip, deflate
+Host: localhost:8080
+Accept: */*
+User-Agent: HTTPie/0.9.2
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded; charset=utf-8
+#+END_SRC
+#+BEGIN_EXAMPLE
+echo=echomeplz
+#+END_EXAMPLE
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+server: Cowboy
+date: Sat, 02 Jan 2016 12:20:50 GMT
+content-length: 9
+content-type: text/plain; charset=utf-8
+#+END_SRC
+#+BEGIN_EXAMPLE
+echomeplz
+#+END_EXAMPLE
