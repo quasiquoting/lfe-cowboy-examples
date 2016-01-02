@@ -1,0 +1,109 @@
+* Static file handler example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/web_server_example/bin/web_server_example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s web-server # make dev
+#+END_SRC
+*See also*: [[https://github.com/yurrriq/lfe-cowboy-examples/blob/master/common.mk][common.mk]]
+
+** Usage
+Point your browser at [[http://localhost:8080]] to
+browse the contents of the =priv= directory.
+
+** Example output
+*** Request HTML
+#+BEGIN_SRC fish :results code
+http -v :8080 Accept:text/html
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: text/html
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-length: 256
+content-type: text/html
+date: Sat, 02 Jan 2016 11:45:09 GMT
+server: Cowboy
+vary: accept
+#+END_SRC
+#+BEGIN_SRC html
+<!DOCTYPE html><html><head><title>Index</title></head><body><a href='/..'>..</a><br>
+<a href='/small.mp4'>small.mp4</a><br>
+<a href='/small.ogv'>small.ogv</a><br>
+<a href='/test.txt'>test.txt</a><br>
+<a href='/video.html'>video.html</a><br>
+</body></html>
+#+END_SRC
+#+END_SRC
+
+*** Request JSON
+#+BEGIN_SRC fish
+http -vj :8080
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: application/json
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Content-Type: application/json
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-length: 49
+content-type: application/json
+date: Sat, 02 Jan 2016 11:46:11 GMT
+server: Cowboy
+vary: accept
+#+END_SRC
+#+BEGIN_SRC json
+[
+    "small.mp4",
+    "small.ogv",
+    "test.txt",
+    "video.html"
+]
+#+END_SRC
+
+*** Request plain text
+#+BEGIN_SRC fish
+http -v :8080 Accept:text/plain
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: text/plain
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.2
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 406 Not Acceptable
+content-length: 0
+date: Sat, 02 Jan 2016 11:47:10 GMT
+server: Cowboy
+#+END_SRC
