@@ -3,7 +3,7 @@
 
 #+BEGIN_HTML
 <img src="http://ninenines.eu/img/projects/cowboy-home.png" height=160 style="float:left">
-<img src="http://lfe.io/assets/images/other_images/LispFlavoredErlang-small-square.png" height=160 style="float:left">
+<img src="http://docs.lfe.io/images/logos/LispFlavoredErlang-large.png" height=160 style="float:left">
 <br style="clear:both;" />
 #+END_HTML
 
