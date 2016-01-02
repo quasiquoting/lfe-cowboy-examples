@@ -5,6 +5,6 @@
   {vsn,          "1"},
   {modules, []},
   {registered,   ['ws-sup']},
-  {applications, [kernel, stdlib, cowboy]},
+  {applications, [kernel, stdlib, cowboy, jsx]},
   {mod,          {'ws-app', []}},
   {env,          []}]}.

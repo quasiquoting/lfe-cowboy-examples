@@ -1,9 +1,14 @@
 ;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule directory_handler
+(defmodule directory-handler
+  (doc "Directory handler.")
+  ;; REST callbacks
   (export (init 2)
-          (allowed_methods 2) (resource_exists 2) (content_types_provided 2))
-  (export (list_json 2) (list_html 2)))
+          (allowed_methods 2)
+          (resource_exists 2)
+          (content_types_provided 2))
+  ;; Callback Callbacks
+  (export (list-json 2) (list-html 2)))
 
 (defun init (req paths) `#(cowboy_rest ,req ,paths))
 
@@ -16,22 +21,22 @@
      (_err       `#(false ,req #(,req-path ,file-path))))))
 
 (defun content_types_provided (req state)
-  `#([#(#(#"application" #"json" []) list_json)
-      #(#(#"text"        #"html" []) list_html)]
+  `#([#(#(#"application" #"json" []) list-json)
+      #(#(#"text"        #"html" []) list-html)]
      ,req ,state))
 
-(defun list_json
+(defun list-json
   ([req `#(,path ,fs)]
-   (let ((files (lists:map #'list_to_binary/1 fs)))
+   (let ((files (lc ((<- f fs)) (list_to_binary f))))
      `#(,(jsx:encode files) ,req ,path))))
 
-(defun list_html
+(defun list-html
   ([req `#(,path ,fs)]
-   (let* ((body `(,(lists:map (lambda (f) (links path f)) `(".." . ,fs))))
+   (let* ((body (lc ((<- f `(".." . ,fs))) (links path f)))
           (html `(#b("<!DOCTYPE html><html><head><title>Index</title></head>"
                      "<body>") ,body #"</body></html>\n")))
      `#(,html ,req ,path))))
 
 (defun links
-  ([#"" file]    `("<a href='/" ,file "'>" ,file "</a><br>\n"))
-  ([prefix file] `("<a href='/" ,prefix #\/ ,file "'>" ,file "</a><br>\n")))
+  ([#"" file]    `["<a href='/" ,file "'>" ,file "</a><br>\n"])
+  ([prefix file] `["<a href='/" ,prefix #\/ ,file "'>" ,file "</a><br>\n"]))

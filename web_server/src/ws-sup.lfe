@@ -7,6 +7,6 @@
   ;; supervisor
   (export (init 1)))
 
-(defun start_link () (supervisor:start_link `#(local ,(MODULE)) (MODULE) '()))
+(defun start_link () (supervisor:start_link `#(local ,(MODULE)) (MODULE) '[]))
 
-(defun init (['()] '#(ok #(#(one_for_one 10 10) ()))))
+(defun init (['()] '#(ok #(#(one_for_one 10 10) []))))
