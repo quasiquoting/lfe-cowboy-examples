@@ -1,0 +1,63 @@
+* POST parameter echo example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/error-hook-example/bin/error-hook-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s error-hook # make dev
+#+END_SRC
+*See also*: [[https://github.com/yurrriq/lfe-cowboy-examples/blob/master/common.mk][common.mk]]
+
+** Usage
+Point your browser at [[http://localhost:8080]] or use ~telnet~.
+
+** Example output
+#+BEGIN_SRC fish
+http :8080
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 404 Not Found
+content-length: 56
+date: Sun, 03 Jan 2016 09:15:04 GMT
+server: Cowboy
+
+404 Not Found: "/" is not the path you are looking for.
+#+END_SRC
+
+#+BEGIN_SRC fish
+telnet localhost 8080
+#+END_SRC
+#+BEGIN_SRC http
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+#+END_SRC
+#+BEGIN_EXAMPLE
+bad
+#+END_EXAMPLE
+#+BEGIN_SRC http
+HTTP/1.1 400 Bad Request
+connection: close
+server: Cowboy
+date: Sun, 03 Jan 2016 09:16:07 GMT
+content-length: 15
+
+HTTP Error 400
+Connection closed by foreign host.
+#+END_SRC

@@ -11,11 +11,10 @@
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/compress-response][compress-response]]: send a response body compressed if the client supports it
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/echo-get][echo-get]]: parse and echo a GET query string
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/echo-post][echo-post]]: parse and echo a POST parameter
+- [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/error-hook][error-hook]]: provide custom error pages
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/hello-world][hello-world]]: simplest example application
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/rest-hello-world][rest-hello-world]]: return the data type that matches the request type (html, json or text)
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/web_server][web_server]]: serves files with lists directory entries
-
-
 
 ** Other Languages
 - [[https://github.com/ninenines/cowboy/tree/master/examples][Erlang]]
