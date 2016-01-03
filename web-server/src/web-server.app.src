@@ -1,9 +1,14 @@
 %% Feel free to use, reuse and abuse the code in this file.
 
-{application, web_server,
+{application,    'web-server',
  [{description,  "Cowboy static file handler with directory indexes."},
   {vsn,          "1"},
-  {modules,      []},
+  {modules,      ['directory-handler',
+                  'directory-lister',
+                  'web-server',
+                  'ws-app',
+                  'ws-sup',
+                  'ws-util']},
   {registered,   ['ws-sup']},
   {applications, [kernel, stdlib, cowboy, jsx]},
   {mod,          {'ws-app', []}},

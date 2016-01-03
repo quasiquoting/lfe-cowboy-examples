@@ -35,7 +35,7 @@
 - [[file:rest-hello-world][rest-hello-world]]:
   return the data type that matches the request type (html, json or text)
 
-- [[file:web_server][web_server]]:
+- [[file:web-server][web-server]]:
   serve files and list directory entries
 
 ** Other Languages

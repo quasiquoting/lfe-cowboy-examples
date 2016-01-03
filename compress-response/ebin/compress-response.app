@@ -3,7 +3,7 @@
 {application, 'compress-response',
  [{description,  "Cowboy compressed response example."},
   {vsn,          "1"},
-  {modules, []},
+  {modules,      ['compress-response', 'cr-app', 'cr-handler', 'cr-sup']},
   {registered,   ['cr-sup']},
   {applications, [kernel, stdlib, cowboy]},
   {mod,          {'cr-app', []}},

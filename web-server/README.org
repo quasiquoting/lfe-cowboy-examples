@@ -13,7 +13,7 @@ make
 *** Release
 To start the release in the foreground:
 #+BEGIN_SRC fish
-./_rel/web_server_example/bin/web_server_example console
+./_rel/web-server-example/bin/web-server-example console
 #+END_SRC
 *Note*: The previous command also starts an Erlang console.
 
