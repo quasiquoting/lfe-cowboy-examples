@@ -1,1 +1,0 @@
-../resources/make/common.mk
