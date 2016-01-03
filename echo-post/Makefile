@@ -1,1 +1,1 @@
-../Makefile
+../resources/make/common.mk

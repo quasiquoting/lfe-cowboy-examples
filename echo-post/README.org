@@ -31,7 +31,7 @@ you can use the command line tool `http` as we will demonstrate.
 
 ** Example output
 #+BEGIN_SRC fish
-http -vf POST :8080 echo=echomeplz | pbcopy
+http -vf POST :8080 echo=echomeplz
 #+END_SRC
 #+BEGIN_SRC http
 POST / HTTP/1.1
