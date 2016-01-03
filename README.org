@@ -9,6 +9,7 @@
 
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/chunked-hello-world][chunked-hello-world]]: demonstrates chunked data transfer with two one-second delays
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/compress-response][compress-response]]: send a response body compressed if the client supports it
+- [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/cookie][cookie]]: set cookies from server and client side
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/echo-get][echo-get]]: parse and echo a GET query string
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/echo-post][echo-post]]: parse and echo a POST parameter
 - [[https://github.com/yurrriq/lfe-cowboy-examples/tree/master/error-hook][error-hook]]: provide custom error pages
