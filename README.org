@@ -26,6 +26,9 @@
 - [[file:error-hook][error-hook]]:
   provide custom error pages
 
+- [[file:eventsource][eventsource]]:
+  eventsource emitter and consumer
+
 - [[file:hello-world][hello-world]]:
   simplest example application
 
