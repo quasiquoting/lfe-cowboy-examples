@@ -1,1 +1,1 @@
-dev: ; lfe -pa $(CURDIR)/ebin -pa $(CURDIR)deps/*/ebin -s $(PROJECT)
+dev: ; lfe -pa $(CURDIR)/ebin -pa $(CURDIR)/deps/*/ebin -s $(PROJECT)
