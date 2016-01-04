@@ -2,7 +2,8 @@
 
 (defmodule directory-lister
   (behaviour cowboy_middleware)
-  (export (execute 2)))
+  (export (execute 2))
+  (export all))
 
 (defun execute (req env)
   (case (lists:keyfind 'handler 1 env)
@@ -14,7 +15,7 @@
          (path* (lists:foldl
                   (lambda (s acc) (binary (acc binary) (s binary) #\/))
                   #"" path))
-         (`#(handler_opts #(,_ ,_ ,_ ,extra))
+         (`#(handler_opts #(dir ,_ ,extra))         ; see ws-app:priv-dir-hack/1
           (lists:keyfind 'handler_opts 1 env))
          (`#(dir_handler ,dir-handler) (lists:keyfind 'dir_handler 1 extra))
          (full-path (resource-path path*)))
@@ -29,10 +30,10 @@
                 ,env*])))
 
 (defun valid-path?
-  (['()]                 'true)
-  ([`(#".." . ,_t)]      'false)
+  (['()]                             'true)
+  ([`(#".." . ,_t)]                  'false)
   ([`(,(binary "/" (_ binary)) ,_t)] 'false)
-  ([`(,_h . ,rest)]      (valid-path? rest)))
+  ([`(,_h . ,rest)]                  (valid-path? rest)))
 
 (defun resource-path (path)
-  (filename:join `[,(code:priv_dir 'web_server) ,path]))
+  (filename:join `[,(ws-util:priv-dir 'web-server) ,path]))
