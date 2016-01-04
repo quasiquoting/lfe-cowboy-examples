@@ -1,0 +1,73 @@
+* Basic authorization example using REST
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/rest-basic-auth-example/bin/rest-basic-auth-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s rest-basic-auth # make dev
+#+END_SRC
+*See also*: [[https://github.com/yurrriq/lfe-cowboy-examples/blob/master/common.mk][common.mk]]
+
+** Usage
+Point your browser at [[http://localhost:8080]].
+
+** Example output
+*** Request with no authentication
+#+BEGIN_SRC fish
+http -v :8080
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.3
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 401 Unauthorized
+content-length: 0
+date: Mon, 04 Jan 2016 06:08:06 GMT
+server: Cowboy
+www-authenticate: Basic realm="cowboy"
+#+END_SRC
+
+*** Request with authentication
+#+BEGIN_SRC fish
+http -va 'Aladdin:open sesame' :8080
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.3
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+content-length: 16
+content-type: text/plain
+date: Mon, 04 Jan 2016 06:18:37 GMT
+server: Cowboy
+#+END_SRC
+#+BEGIN_EXAMPLE
+Hello, Aladdin!
+#+END_EXAMPLE
