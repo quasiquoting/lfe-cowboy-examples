@@ -1,0 +1,129 @@
+* REST pastebin example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/rest-pastebin-example/bin/rest-pastebin-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s rest-pastebin # make dev
+#+END_SRC
+
+** Usage
+Point your browser at [[http://localhost:8080]].
+
+To upload something to the pastebin application, you can use ~http~:
+#+BEGIN_SRC fish
+http -f :8080 paste=(<command>) Content-Type:application/x-www-form-urlencoded
+#+END_SRC
+
+Or, to upload the file =my-file=:
+#+BEGIN_SRC fish
+http -f :8080 paste=@my-file Content-Type:application/x-www-form-urlencoded
+#+END_SRC
+
+The URL of your data will be in the location header. Alternately, you can visit
+[[http://localhost:8080]] with your favorite web browser and submit your paste via
+the form.
+
+Code that has been pasted can be highlighted with ~?lang=<language>~ option if
+you have [[http://www.andre-simon.de/doku/highlight/en/highlight.html][highlight]] installed (although ~pygments~ or any other should work just
+fine).
+
+This will show the contents of the HTML file:
+#+BEGIN_SRC fish
+http -vf --follow :8080 paste=@priv/index.html \
+     Content-Type:application/x-www-form-urlencoded # drop charset=utf-8
+#+END_SRC
+
+If your terminal supports color sequences and ~highlight~ is installed, the
+following command will show the same contents but with HTML syntax highlighting.
+#+BEGIN_SRC fish
+http <url from location header> lang==html
+#+END_SRC
+
+** Example Output
+#+BEGIN_SRC fish
+http -vf --follow :8080 paste=(echo 'Testing 123') \
+     Content-Type:application/x-www-form-urlencoded # drop charset=utf-8
+#+END_SRC
+#+BEGIN_SRC http
+GET /oZCkVBbs HTTP/1.1
+Accept-Encoding: gzip, deflate
+Host: localhost:8080
+Accept: */*
+User-Agent: HTTPie/0.9.3
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+server: Cowboy
+date: Tue, 05 Jan 2016 22:09:19 GMT
+content-length: 12
+content-type: text/plain
+vary: accept
+#+END_SRC
+#+BEGIN_EXAMPLE
+Testing 123
+#+END_EXAMPLE
+
+#+BEGIN_SRC fish
+http -vf --follow :8080 paste=@priv/index.html \
+     Content-Type:application/x-www-form-urlencoded # drop charset=utf-8
+#+END_SRC
+#+BEGIN_SRC http
+GET /H3s2MhU2 HTTP/1.1
+Accept-Encoding: gzip, deflate
+Host: localhost:8080
+Accept: */*
+User-Agent: HTTPie/0.9.3
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+server: Cowboy
+date: Tue, 05 Jan 2016 22:02:30 GMT
+content-length: 543
+content-type: text/plain
+vary: accept
+#+END_SRC
+#+BEGIN_SRC html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Pastebin</title>
+  </head>
+  <body>
+    <h1>Simple Pastebin</h1>
+    <p>
+      You can paste your text into the text field to submit, or you can
+      capture the output of a command with:
+    </p>
+    <code>
+      <i>command</i> | curl -i --data-urlencode paste@- localhost:8080
+    </code>
+    <form action="/" method="post">
+      <textarea cols="80" rows="15" name="paste"></textarea>
+      <div>
+        <button type="submit">Upload your code</button>
+      </div>
+    </form>
+  </body>
+</html>
+#+END_SRC
