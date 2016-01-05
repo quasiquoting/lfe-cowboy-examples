@@ -22,7 +22,6 @@ To start the app and an LFE shell:
 #+BEGIN_SRC fish
 lfe -pa ebin -pa deps/*/ebin -s error-hook # make dev
 #+END_SRC
-*See also*: [[https://github.com/yurrriq/lfe-cowboy-examples/blob/master/common.mk][common.mk]]
 
 ** Usage
 Point your browser at [[http://localhost:8080]] or use ~telnet~.
