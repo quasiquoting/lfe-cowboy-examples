@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule cr-sup
+(defmodule compress-response-sup
   (behaviour supervisor)
   ;; API
   (export (start_link 0))
