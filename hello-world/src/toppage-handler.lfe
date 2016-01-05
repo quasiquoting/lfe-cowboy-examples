@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule hw-handler
+(defmodule toppage-handler
   (doc "Hello world handler.")
   ;; Cowboy handler
   (export (init 2)))
