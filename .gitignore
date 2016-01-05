@@ -11,3 +11,5 @@ test/*.beam
 debug-*
 *.dump
 .rebar
+*/*.d
+*/ebin
