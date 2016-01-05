@@ -1,4 +1,4 @@
-;; Feel free to use, reuse and abuse the code in this file.
+;;;; Feel free to use, reuse and abuse the code in this file.
 
 (defmodule sw-sup
   (behaviour supervisor)
@@ -7,16 +7,24 @@
   ;; Supervisor
   (export (init 1)))
 
-
 ;;;===================================================================
 ;;; API
 ;;;===================================================================
 
-(defun start_link () (supervisor:start_link `#(local ,(MODULE)) (MODULE) '[]))
+(defun start_link ()
+  "Create a supervisor process as part of a supervision tree."
+  (supervisor:start_link `#(local ,(MODULE)) (MODULE) []))
 
 
 ;;;===================================================================
 ;;; Supervisor
 ;;;===================================================================
 
-(defun init (['()] '#(ok #(#(one_for_one 10 10) []))))
+(defun init
+  "Return the supervisor flags and child specifications."
+  (['()]
+   (let ((children []))
+     `#(ok #(,(map 'strategy  'one_for_one
+                   'intensity 10
+                   'period    10)
+             ,children)))))

@@ -1,4 +1,4 @@
-;; Feel free to use, reuse and abuse the code in this file.
+;;;; Feel free to use, reuse and abuse the code in this file.
 
 (defmodule cookie-app
   (behaviour application)
