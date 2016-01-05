@@ -1,9 +1,15 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
 (defmodule cr-handler
+  ;; Cowboy handler
   (export (init 2)))
 
+;;;===================================================================
+;;; Cowboy handler
+;;;===================================================================
+
 (defun init (req opts)
+  "Reply with a lengthy paragraph to be compressed."
   (let* ((big-body
 #"A cowboy is an animal herder who tends cattle on ranches in North America,
 traditionally on horseback, and often performs a multitude of other ranch-

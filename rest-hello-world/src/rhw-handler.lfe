@@ -1,21 +1,42 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
 (defmodule rhw-handler
+  (doc "REST hello world handler.")
+  ;; Cowboy handler
   (export (init 2))
-  (export (content_types_provided 2)
-          (hello-to-html 2)
-          (hello-to-json 2)
-          (hello-to-text 2)))
+  ;; REST callbacks
+  (export (content_types_provided 2))
+  ;; API
+  (export (hello->html 2)
+          (hello->json 2)
+          (hello->text 2)))
 
-(defun init (req opts) `#(cowboy_rest ,req ,opts))
+;;;===================================================================
+;;; Cowboy handler
+;;;===================================================================
+
+(defun init (req opts)
+  "Switch to the REST protocol and start executing the state machine."
+  `#(cowboy_rest ,req ,opts))
+
+
+;;;===================================================================
+;;; REST callbacks
+;;;===================================================================
 
 (defun content_types_provided (req state)
-  `#((#(#"text/html"        hello-to-html)
-      #(#"application/json" hello-to-json)
-      #(#"text/plain"       hello-to-text))
+  `#([#(#"text/html"        hello->html)
+      #(#"application/json" hello->json)
+      #(#"text/plain"       hello->text)]
      ,req ,state))
 
-(defun hello-to-html (req state)
+
+;;;===================================================================
+;;; Cowboy handler
+;;;===================================================================
+
+(defun hello->html (req state)
+  "Return hello in HTML."
   (let ((body #"<html>
 <head>
   <meta charset=\"utf-8\">
@@ -27,8 +48,11 @@
 </html>"))
     `#(,body ,req ,state)))
 
-(defun hello-to-json (req state)
+(defun hello->json (req state)
+  "Return a JSON-formatted hello."
   (let ((body #"{\"rest\": \"Hello World!\"}"))
     `#(,body ,req ,state)))
 
-(defun hello-to-text (req state) `#(#"REST Hello World as text!" ,req ,state))
+(defun hello->text (req state)
+  "Return a text hello."
+  `#(#"REST Hello World as text!" ,req ,state))

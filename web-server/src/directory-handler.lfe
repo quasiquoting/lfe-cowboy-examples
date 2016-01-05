@@ -10,7 +10,17 @@
   ;; Callback Callbacks
   (export (list-json 2) (list-html 2)))
 
-(defun init (req paths) `#(cowboy_rest ,req ,paths))
+;;;===================================================================
+;;; Cowboy handler
+;;;===================================================================
+
+(defun init (req opts)
+  "Switch to the REST protocol and start executing the state machine."
+  `#(cowboy_rest ,req ,opts))
+
+;;;===================================================================
+;;; cowboy_rest callbacks
+;;;===================================================================
 
 (defun allowed_methods (req state) `#([#"GET"] ,req ,state))
 
@@ -32,9 +42,9 @@
 
 (defun list-html
   ([req `#(,path ,fs)]
-   (let* ((body (lc ((<- f `(".." . ,fs))) (links path f)))
-          (html `(#b("<!DOCTYPE html><html><head><title>Index</title></head>"
-                     "<body>") ,body #"</body></html>\n")))
+   (let* ((body (lc ((<- f `[".." . ,fs])) (links path f)))
+          (html `[#b("<!DOCTYPE html><html><head><title>Index</title></head>"
+                     "<body>") ,body #"</body></html>\n"]))
      `#(,html ,req ,path))))
 
 (defun links

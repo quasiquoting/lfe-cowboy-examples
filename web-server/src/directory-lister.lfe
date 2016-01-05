@@ -2,13 +2,22 @@
 
 (defmodule directory-lister
   (behaviour cowboy_middleware)
-  (export (execute 2))
-  (export all))
+  ;; Cowboy middleware
+  (export (execute 2)))
+
+;;;===================================================================
+;;; Cowboy middleware
+;;;===================================================================
 
 (defun execute (req env)
   (case (lists:keyfind 'handler 1 env)
     (#(handler cowboy_static) (redirect-directory req env))
     (_h `#(ok ,req ,env))))
+
+
+;;;===================================================================
+;;; Internal functions
+;;;===================================================================
 
 (defun redirect-directory (req env)
   (let* ((path  (cowboy_req:path_info req))
@@ -36,4 +45,6 @@
   ([`(,_h . ,rest)]                  (valid-path? rest)))
 
 (defun resource-path (path)
+  "Given a relative `path`, return the absolute path from joining the `priv`
+directory with `path`."
   (filename:join `[,(ws-util:priv-dir 'web-server) ,path]))

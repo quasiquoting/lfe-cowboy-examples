@@ -2,7 +2,12 @@
 
 (defmodule es-handler
   (doc "EventSource emitter.")
+  ;; Cowboy handler
   (export (init 2) (info 3)))
+
+;;;===================================================================
+;;; Cowboy handler
+;;;===================================================================
 
 (defun init (req opts)
   (let* ((headers '[#("content-type" #"text/event-stream")])
@@ -16,5 +21,10 @@
    (erlang:send_after 1000 (self) #(message "Tick"))
    `#(ok ,req ,state)))
 
+;;;===================================================================
+;;; Internal functions
+;;;===================================================================
+
 (defun id ()
+  "Generate and return a pseudorandom identifier (integer)."
   (integer_to_list (erlang:unique_integer '[positive monotonic]) 16))

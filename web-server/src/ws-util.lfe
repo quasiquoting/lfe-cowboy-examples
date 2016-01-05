@@ -2,7 +2,7 @@
   (export (priv-dir 1)))
 
 (defun priv-dir (app)
-  "Given an `app` name as an atom, return the path to its priv directory.
+  "Given an `app` name as an atom, return the path to its `priv` directory.
 Call `code:priv_dir/1` and return the result, unless it is `#(error bad_name)`.
 In that case, hack together the path manually, using a trick that
 should Just Work™, even if `app` is in kebab case."

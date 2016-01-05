@@ -2,7 +2,12 @@
 
 (defmodule toppage-handler
   (doc "Hello world handler")
+  ;; Cowboy handler
   (export (init 2)))
+
+;;;===================================================================
+;;; Cowboy handler
+;;;===================================================================
 
 (defun init (req opts)
   (let ((reply (cowboy_req:reply 200
