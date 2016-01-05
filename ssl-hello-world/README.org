@@ -1,0 +1,50 @@
+* SSL hello world example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/ssl-hello-world-example/bin/ssl-hello-world-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s ssl-hello-world # make dev
+#+END_SRC
+
+** Usage
+Point your browser at [[http://localhost:8080]].
+
+** Example output
+#+BEGIN_SRC fish
+http -v --verify=priv/ssl/cowboy-ca.crt https://localhost:8443
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Connection: keep-alive
+Host: localhost:8443
+Accept-Encoding: gzip, deflate
+Accept: */*
+User-Agent: HTTPie/0.9.3
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+server: Cowboy
+date: Tue, 05 Jan 2016 08:04:42 GMT
+content-length: 12
+content-type: text/plain
+#+END_SRC
+#+BEGIN_EXAMPLE
+Hello world!
+#+END_EXAMPLE
