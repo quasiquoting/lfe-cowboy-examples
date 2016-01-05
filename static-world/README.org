@@ -1,0 +1,49 @@
+* Static file handler example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/static-world-example/bin/static-world-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s static-world # make dev
+#+END_SRC
+
+** Usage
+Point your browser at [[http://localhost:8080]].
+
+The example will serve all the files found in the =priv= directory. For example:
+
+- [[http://localhost:8080/test.txt][Plain text file]]
+- [[http://localhost:8080/video.html][HTML5 video demo]]
+
+** Example output
+#+BEGIN_SRC fish
+http :8080/test.txt
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+server: Cowboy
+date: Tue, 05 Jan 2016 07:18:51 GMT
+content-length: 52
+content-type: text/plain
+etag: "3621248494"
+last-modified: Tue, 05 Jan 2016 06:37:59 GMT
+#+END_SRC
+#+BEGIN_EXAMPLE
+If you read this then the static file server works!
+#+END_EXAMPLE
