@@ -5,7 +5,7 @@
   (export (start 2) (stop 1)))
 
 (defun start (_type _args)
-  (let* ((dispatch  (cowboy_router:compile '(#(_ (#("/" eg-handler ()))))))
+  (let* ((dispatch  (cowboy_router:compile '(#(_ (#("/" eg-handler []))))))
          (`#(ok ,_) (cowboy:start_http 'http 100 '(#(port 8080))
                                        `(#(env (#(dispatch ,dispatch)))))))
     (eg-sup:start_link)))
