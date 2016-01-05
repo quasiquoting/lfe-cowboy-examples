@@ -1,8 +1,14 @@
 # Hello World Example
 
+Rather than a license, you'll find the following `<<advice>>` at the top of
+each code file:
+```{.text name="advice"}
+Feel free to use, reuse and abuse the code in this file.
+```
+
 ## Application Resource File
 ```{.erlang name="file:src/hello-world.app.src"}
-%% Feel free to use, reuse and abuse the code in this file.
+%% <<advice>>
 
 {application,    'hello-world',
  [{description,  "Cowboy Hello World example."},
@@ -19,7 +25,7 @@
 
 ## Convenience module
 ```{.lfe name="file:src/hello-world.lfe"}
-;;;; Feel free to use, reuse and abuse the code in this file.
+;;;; <<advice>>
 
 (defmodule hello-world
   ;; API
@@ -36,7 +42,7 @@
 
 ## Supervisor
 ```{.lfe name="file:src/hello-world-sup.lfe"}
-;;;; Feel free to use, reuse and abuse the code in this file.
+;;;; <<advice>>
 
 (defmodule hello-world-sup
   (behaviour supervisor)
@@ -70,7 +76,7 @@
 
 ## Application
 ```{lfe name="file:src/hello-world-app.lfe"}
-;;;; Feel free to use, reuse and abuse the code in this file.
+;;;; <<advice>>
 
 (defmodule hello-world-app
   (behaviour application)
@@ -95,7 +101,7 @@
 
 ## Top page handler
 ```{.lfe name="file:src/toppage-handler.lfe"}
-;;;; Feel free to use, reuse and abuse the code in this file.
+;;;; <<advice>>
 
 (defmodule toppage-handler
   (doc "Hello world handler.")
@@ -130,4 +136,9 @@ dep_lfe.mk  = git https://github.com/ninenines/lfe.mk master
 dep_cowboy  = git https://github.com/ninenines/cowboy master
 include ../resources/make/erlang.mk
 include ../resources/make/dev.mk
+```
+
+### dev.mk
+```{.make name="file:../resources/make/dev.mk"}
+dev: ; lfe -pa $(CURDIR)/ebin -pa $(CURDIR)/deps/*/ebin -s $(PROJECT)
 ```
