@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule chw-handler
+(defmodule toppage-handler
   ;; Cowboy handler
   (export (init 2)))
 
