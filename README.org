@@ -38,6 +38,10 @@
 - [[rest-basic-auth]]:
   basic HTTP authorization with REST
 
+- [[rest-pastebin]]:
+  create text objects and return the data type
+  that matches the request type (html, text)
+
 - [[rest-stream-response]]:
   stream results from a data store
 
@@ -50,11 +54,11 @@
 - [[web-server]]:
   serve files and list directory entries
 
-- [[upload]]:
-  multipart/form-data upload
-
 - [[websocket]]:
   websocket example
+
+- [[upload]]:
+  multipart/form-data upload
 
 ** Other Languages
 - [[https://github.com/ninenines/cowboy/tree/master/examples][Erlang]]
