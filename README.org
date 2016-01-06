@@ -50,6 +50,9 @@
 - [[file:web-server][web-server]]:
   serve files and list directory entries
 
+- [[file:upload][upload]]:
+  multipart/form-data upload
+
 ** Other Languages
 - [[https://github.com/ninenines/cowboy/tree/master/examples][Erlang]]
 - [[https://github.com/joshrotenberg/elixir_cowboy_examples][Elixir]]

@@ -1,0 +1,13 @@
+%% Feel free to use, reuse and abuse the code in this file.
+
+{application,    'upload',
+ [{description,  "Cowboy multipart upload example."},
+  {vsn,          "1"},
+  {modules,      ['upload',
+                  'upload-sup',
+                  'upload-app',
+                  'upload-handler']},
+  {registered,   ['upload-sup']},
+  {applications, [kernel, stdlib, cowboy]},
+  {mod,          {'upload-app', []}},
+  {env,          []}]}.
