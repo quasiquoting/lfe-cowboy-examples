@@ -1,0 +1,30 @@
+* Markdown middleware example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/markdown-middleware-example/bin/markdown-middleware-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s markdown-middleware # make dev
+#+END_SRC
+
+** Usage
+Point your browser at [[http://localhost:8080/video.html]].
+
+Cowboy will serve all the files you put in the =priv= directory.
+If you request a =.html= file that has a corresponding =.md= file
+that has been modified more recently than the =.html= file, the
+Markdown file will be converted to HTML and served by Cowboy.
