@@ -1,0 +1,25 @@
+* WebSocket example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/websocket-example/bin/websocket-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s websocket # make dev
+#+END_SRC
+
+** Usage
+Point your browser at [[http://localhost:8080]].

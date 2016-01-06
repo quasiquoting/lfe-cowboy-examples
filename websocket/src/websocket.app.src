@@ -1,0 +1,13 @@
+%% Feel free to use, reuse and abuse the code in this file.
+
+{application,    'websocket',
+ [{description,  "Cowboy websocket example."},
+  {vsn,          "1"},
+  {modules,      ['websocket',
+                  'websocket-sup',
+                  'websocket-app',
+                  'ws-handler']},
+  {registered,   ['websocket-sup']},
+  {applications, [kernel, stdlib, cowboy]},
+  {mod,          {'websocket-app', []}},
+  {env,          []}]}.

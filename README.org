@@ -53,6 +53,9 @@
 - [[file:upload][upload]]:
   multipart/form-data upload
 
+- [[websocket]]:
+  websocket example
+
 ** Other Languages
 - [[https://github.com/ninenines/cowboy/tree/master/examples][Erlang]]
 - [[https://github.com/joshrotenberg/elixir_cowboy_examples][Elixir]]
