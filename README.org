@@ -1,6 +1,6 @@
 #+OPTIONS: ^:nil
 * LFE Cowboy Examples
-[[https://github.com/rvirding/lfe][LFE]] ports of the [[https://github.com/ninenines/cowboy][Cowboy]] [[https://github.com/ninenines/cowboy/tree/master/examples][examples]].
+[[http://lfe.io][LFE]] ports of the [[http://ninenines.eu/docs/en/cowboy/HEAD/guide/][Cowboy]] [[https://github.com/ninenines/cowboy/tree/master/examples][examples]].
 
 #+BEGIN_HTML
 <img src="http://ninenines.eu/img/projects/cowboy-home.png" height=160 style="float:left">
