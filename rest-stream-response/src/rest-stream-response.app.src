@@ -1,0 +1,13 @@
+%% Feel free to use, reuse and abuse the code in this file.
+
+{application,    'rest-stream-response',
+ [{description,  "Cowboy REST with streaming."},
+  {vsn,          "1"},
+  {modules,      ['rest-stream-response',
+                  'rest-stream-response-sup',
+                  'rest-stream-response-app',
+                  'toppage-handler']},
+  {registered,   ['rest-stream-response-sup']},
+  {applications, [kernel, stdlib, cowboy]},
+  {mod,          {'rest-stream-response-app', []}},
+  {env,          []}]}.

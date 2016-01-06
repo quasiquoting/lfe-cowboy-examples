@@ -1,0 +1,118 @@
+* REST streaming example
+To try this example, you need GNU ~make~ and ~git~ in your =PATH=.
+
+If you don't have [[https://github.com/jkbrzt/httpie][HTTPie]] installed, use the appropriate [[http://curl.haxx.se/docs/manual.html][cURL]] commands instead.
+
+** Building
+To build the example, run the following command:
+#+BEGIN_SRC fish
+make
+#+END_SRC
+
+** Starting
+*** Release
+To start the release in the foreground:
+#+BEGIN_SRC fish
+./_rel/rest-stream-response-example/bin/rest-stream-response-example console
+#+END_SRC
+*Note*: The previous command also starts an Erlang console.
+
+*** LFE
+To start the app and an LFE shell:
+#+BEGIN_SRC fish
+lfe -pa ebin -pa deps/*/ebin -s rest-stream-response # make dev
+#+END_SRC
+
+** Usage
+Point your browser at [[http://localhost:8080]], or use ~http~ to see the rows
+arriving one at a time every half second.
+
+This example simulates streaming a large amount of data from a data store one
+record at a time in CSV format. It also uses a constraint to ensure that the
+last segment of the route is an integer.
+
+** Example output
+*** Fetch records with the second field with value 1
+#+BEGIN_SRC fish
+http -vS :8080
+#+END_SRC
+#+BEGIN_SRC http
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.3
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+connection: close
+content-type: text/csv
+date: Wed, 06 Jan 2016 06:49:34 GMT
+server: Cowboy
+transfer-encoding: identity
+#+END_SRC
+
+One every half second:
+#+BEGIN_EXAMPLE
+Dw8LBBQA,1,46
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+GAoZChcG,1,24
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+AQkCAhQQ,1,22
+#+END_EXAMPLE
+...
+
+*** Fetch records with the second field with value 4
+#+BEGIN_SRC fish
+http -vS :8080/5
+#+END_SRC
+#+BEGIN_SRC http
+GET /4 HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.3
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 200 OK
+connection: close
+content-type: text/csv
+date: Wed, 06 Jan 2016 06:51:20 GMT
+server: Cowboy
+transfer-encoding: identity
+#+END_SRC
+
+One every half second:
+#+BEGIN_EXAMPLE
+BBEBEQAU,4,49
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+ABcFDxcE,4,42
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+FA8QDwEZ,4,40
+#+END_EXAMPLE
+...
+
+*** Fail to use a proper integer and get an error
+#+BEGIN_SRC fish
+http -vS :8080/foo
+#+END_SRC
+#+BEGIN_SRC http
+GET /foo HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Host: localhost:8080
+User-Agent: HTTPie/0.9.3
+#+END_SRC
+#+BEGIN_SRC http
+HTTP/1.1 404 Not Found
+content-length: 0
+date: Wed, 06 Jan 2016 06:53:38 GMT
+server: Cowboy
+#+END_SRC

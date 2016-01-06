@@ -38,6 +38,9 @@
 - [[file:rest-basic-auth][rest-basic-auth]]:
   basic HTTP authorization with REST
 
+- [[file:rest-stream-response][rest-stream-response]]:
+  stream results from a data store
+
 - [[file:ssl-hello-world][ssl-hello-world]]:
   simplest SSL application
 
