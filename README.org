@@ -10,23 +10,24 @@
 
 | Example              | Description                                                                              |
 |----------------------+------------------------------------------------------------------------------------------|
-| [[chunked-hello-world]]  | demonstrate chunked data transfer with two one-second delays                             |
-| [[compress-response]]    | send a response body compressed if the client supports it                                |
-| [[cookie]]               | set cookies from server and client side                                                  |
-| [[echo-get]]             | parse and echo a GET query string                                                        |
-| [[echo-post]]            | parse and echo a POST parameter                                                          |
-| [[error-hook]]           | provide custom error pages                                                               |
-| [[eventsource]]          | eventsource emitter and consumer                                                         |
-| [[hello-world]]          | simplest example application                                                             |
-| [[rest-hello-world]]     | return the data type that matches the request type (html, json or text)                  |
-| [[rest-basic-auth]]      | basic HTTP authorization with REST                                                       |
-| [[rest-pastebin]]        | create text objects and return the data type  that matches the request type (html, text) |
-| [[rest-stream-response]] | stream results from a data store                                                         |
-| [[ssl-hello-world]]      | simplest SSL application                                                                 |
-| [[static-world]]         | static file handler                                                                      |
-| [[web-server]]           | serve files and list directory entries                                                   |
-| [[websocket]]            | websocket example                                                                        |
-| [[upload]]               | multipart/form-data upload                                                               |
+| [[file:chunked-hello-world][chunked-hello-world]]  | demonstrate chunked data transfer with two one-second delays                             |
+| [[file:compress-response][compress-response]]    | send a response body compressed if the client supports it                                |
+| [[file:cookie][cookie]]               | set cookies from server and client side                                                  |
+| [[file:echo-get][echo-get]]             | parse and echo a GET query string                                                        |
+| [[file:echo-post][echo-post]]            | parse and echo a POST parameter                                                          |
+| [[file:error-hook][error-hook]]           | provide custom error pages                                                               |
+| [[file:eventsource][eventsource]]          | eventsource emitter and consumer                                                         |
+| [[file:hello-world][hello-world]]          | simplest example application                                                             |
+| [[file:markdown-middleware][markdown-middleware]]  | static file handler with markdown preprocessor                                           |
+| [[file:rest-hello-world][rest-hello-world]]     | return the data type that matches the request type (html, json or text)                  |
+| [[file:rest-basic-auth][rest-basic-auth]]      | basic HTTP authorization with REST                                                       |
+| [[file:rest-pastebin][rest-pastebin]]        | create text objects and return the data type  that matches the request type (html, text) |
+| [[file:rest-stream-response][rest-stream-response]] | stream results from a data store                                                         |
+| [[file:ssl-hello-world][ssl-hello-world]]      | simplest SSL application                                                                 |
+| [[file:static-world][static-world]]         | static file handler                                                                      |
+| [[file:web-server][web-server]]           | serve files and list directory entries                                                   |
+| [[file:websocket][websocket]]            | websocket example                                                                        |
+| [[file:upload][upload]]               | multipart/form-data upload                                                               |
 
 ** Other Languages
 - [[https://github.com/ninenines/cowboy/tree/master/examples][Erlang]]
