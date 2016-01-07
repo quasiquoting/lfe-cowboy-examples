@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule rhw-handler
+(defmodule toppage-handler
   (doc "REST hello world handler.")
   ;; Cowboy handler
   (export (init 2))

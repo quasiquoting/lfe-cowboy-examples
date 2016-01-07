@@ -11,7 +11,7 @@
 
 (defun start (_type _args)
   "Start the application."
-  (let* ((dispatch  (cowboy_router:compile '[#(_ [#(_ cookie-handler [])])]))
+  (let* ((dispatch  (cowboy_router:compile '[#(_ [#(_ toppage-handler [])])]))
          (`#(ok ,_) (cowboy:start_http 'http 100 '[#(port 8080)]
                       `[#(env [#(dispatch ,dispatch)])])))
     (cookie-sup:start_link)))

@@ -3,7 +3,8 @@
 (defmodule directory-lister
   (behaviour cowboy_middleware)
   ;; Cowboy middleware
-  (export (execute 2)))
+  (export (execute 2))
+  (import (from lone-ranger (priv-dir 1))))
 
 ;;;===================================================================
 ;;; Cowboy middleware
@@ -24,7 +25,7 @@
          (path* (lists:foldl
                   (lambda (s acc) (binary (acc binary) (s binary) #\/))
                   #"" path))
-         (`#(handler_opts #(dir ,_ ,extra))         ; see ws-app:priv-dir-hack/1
+         (`#(handler_opts #(dir ,_ ,extra))
           (lists:keyfind 'handler_opts 1 env))
          (`#(dir_handler ,dir-handler) (lists:keyfind 'dir_handler 1 extra))
          (full-path (resource-path path*)))
@@ -47,4 +48,4 @@
 (defun resource-path (path)
   "Given a relative `path`, return the absolute path from joining the `priv`
 directory with `path`."
-  (filename:join `[,(ws-util:priv-dir 'web-server) ,path]))
+  (filename:join `[,(priv-dir 'web-server) ,path]))

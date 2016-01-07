@@ -3,8 +3,8 @@
 {application,    'error-hook',
  [{description,  "Cowboy error handler example."},
   {vsn,          "1"},
-  {modules,      ['eh-app', 'eh-sup', 'error-hook']},
-  {registered,   ['eh-sup']},
+  {modules,      ['error-hook-sup', 'error-hook-app', 'error-hook']},
+  {registered,   ['error-hook-sup']},
   {applications, [kernel, stdlib, cowboy]},
-  {mod,          {'eh-app', []}},
+  {mod,          {'error-hook-app', []}},
   {env,          []}]}.

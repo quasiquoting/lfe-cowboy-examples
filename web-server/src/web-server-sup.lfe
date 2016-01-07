@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule sw-sup
+(defmodule web-server-sup
   (behaviour supervisor)
   ;; API
   (export (start_link 0))

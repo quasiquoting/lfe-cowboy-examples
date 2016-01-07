@@ -3,7 +3,8 @@
 (defmodule markdown-converter
   (behaviour cowboy_middleware)
   ;; Cowboy middleware
-  (export (execute 2)))
+  (export (execute 2))
+  (import (from lone-ranger (priv-dir 1))))
 
 ;;;===================================================================
 ;;; Cowboy middleware
@@ -31,7 +32,7 @@
 (defun resource-path (path)
   "Given a relative `path`, return the absolute path from joining the `priv`
 directory with `path`."
-  (filename:join `[,(mm-util:priv-dir 'markdown-middleware) ,path]))
+  (filename:join `[,(priv-dir 'markdown-middleware) ,path]))
 
 (defun source-path (path)
   (binary ((filename:rootname path) binary) ".md"))

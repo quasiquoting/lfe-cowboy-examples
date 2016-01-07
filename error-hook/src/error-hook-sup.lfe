@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule es-sup
+(defmodule error-hook-sup
   (behaviour supervisor)
   ;; API
   (export (start_link 0))

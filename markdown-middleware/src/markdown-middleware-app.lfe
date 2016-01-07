@@ -3,7 +3,8 @@
 (defmodule markdown-middleware-app
   (behaviour application)
   ;; API
-  (export (start 2) (stop 1)))
+  (export (start 2) (stop 1))
+  (import (from lone-ranger (priv-dir 2))))
 
 ;;;===================================================================
 ;;; API
@@ -13,7 +14,7 @@
   "Start the application."
   (let* ((dispatch  (cowboy_router:compile
                       `[#(_ [#("/[...]" cowboy_static
-                               ,(mm-util:priv-dir 'markdown-middleware ""))])]))
+                               ,(priv-dir 'markdown-middleware ""))])]))
          (`#(ok ,_) (cowboy:start_http 'http 100 '[#(port 8080)]
                       `[#(env         [#(dispatch ,dispatch)])
                         #(middlewares [cowboy_router

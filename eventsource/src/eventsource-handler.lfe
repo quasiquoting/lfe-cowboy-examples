@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule es-handler
+(defmodule eventsource-handler
   (doc "EventSource emitter.")
   ;; Cowboy handler
   (export (init 2) (info 3)))

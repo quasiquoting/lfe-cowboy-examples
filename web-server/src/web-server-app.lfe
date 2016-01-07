@@ -1,9 +1,10 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule ws-app
+(defmodule web-server-app
   (behaviour application)
   ;; API
-  (export (start 2) (stop 1)))
+  (export (start 2) (stop 1))
+  (import (from lone-ranger (priv-dir 3))))
 
 ;;;===================================================================
 ;;; API
@@ -20,21 +21,8 @@
                       `[#(env [#(dispatch ,dispatch)])
                         #(middlewares
                           [cowboy_router directory-lister cowboy_handler])])))
-    (ws-sup:start_link)))
+    (web-server-sup:start_link)))
 
 (defun stop (_state)
   "Stop the application."
   'ok)
-
-
-;;;===================================================================
-;;; Internal functions
-;;;===================================================================
-
-(defun priv-dir (app path extra)
-  "Since cowboy_static calls code:priv_dir/1 internally and code:priv_dir/1
-doesn't like app names in kebab case, use this `#(dir ...)` config instead of:
-```{.lfe}
-`#(priv_dir ,app ,path ,extra)
-```"
-  `#(dir ,(++ (priv-dir app) "/" path) ,extra))

@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule cookie-handler
+(defmodule toppage-handler
   (doc "Cookie handler.")
   ;; Cowboy handler
   (export (init 2)))

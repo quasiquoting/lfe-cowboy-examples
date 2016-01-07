@@ -15,6 +15,6 @@
          (`#(ok ,data ,req3)    (cowboy_req:part_body req2))
          (`#(file #"inputfile" ,filename ,content-type ,_transfer-encoding)
           (cow_multipart:form_data headers)))
-    (io:format "Received file ~p of content-type ~p as follows:~n~p~n~n"
+    (lfe_io:format "Received file ~p of content-type ~p as follows:~n~p~n~n"
                `[,filename ,content-type ,data])
     `#(ok ,req3 ,opts)))

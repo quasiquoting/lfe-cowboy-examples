@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule eg-app
+(defmodule rest-basic-auth-app
   (behaviour application)
   ;; API
   (export (start 2) (stop 1)))
@@ -11,10 +11,10 @@
 
 (defun start (_type _args)
   "Start the application."
-  (let* ((dispatch  (cowboy_router:compile '[#(_ [#("/" eg-handler [])])]))
+  (let* ((dispatch  (cowboy_router:compile '[#(_ [#("/" toppage-handler [])])]))
          (`#(ok ,_) (cowboy:start_http 'http 100 '[#(port 8080)]
                       `[#(env [#(dispatch ,dispatch)])])))
-    (eg-sup:start_link)))
+    (rest-basic-auth-sup:start_link)))
 
 (defun stop (_state)
   "Stop the application."

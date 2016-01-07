@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule rba-handler
+(defmodule toppage-handler
   (doc "Handler with basic HTTP authorization.")
   ;; Cowboy handler
   (export (init 2))

@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule eh-app
+(defmodule error-hook-app
   (behaviour application)
   ;; API
   (export (start 2) (stop 1)))
@@ -15,7 +15,7 @@
          (`#(ok ,_) (cowboy:start_http 'http 100 '[#(port 8080)]
                       `[#(env [#(dispatch ,dispatch)])
                         #(onresponse ,(fun error-hook 4))])))
-    (eh-sup:start_link)))
+    (error-hook-sup:start_link)))
 
 (defun stop (_state)
   "Stop the application."

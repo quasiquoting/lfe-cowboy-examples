@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule ws-sup
+(defmodule echo-get-sup
   (behaviour supervisor)
   ;; API
   (export (start_link 0))
@@ -28,3 +28,4 @@
                    'intensity 10
                    'period    10)
              ,children)))))
+

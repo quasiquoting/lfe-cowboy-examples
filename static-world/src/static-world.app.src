@@ -3,8 +3,8 @@
 {application,    'static-world',
  [{description,  "Cowboy static file handler example."},
   {vsn,          "1"},
-  {modules,      ['static-world', 'sw-sup', 'sw-app']},
-  {registered,   ['sw-sup']},
+  {modules,      ['static-world', 'static-world-sup', 'static-world-app']},
+  {registered,   ['static-world-sup']},
   {applications, [kernel, stdlib, cowboy]},
-  {mod,          {'sw-app', []}},
+  {mod,          {'static-world-app', []}},
   {env,          []}]}.

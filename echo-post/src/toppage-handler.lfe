@@ -1,6 +1,6 @@
 ;;;; Feel free to use, reuse and abuse the code in this file.
 
-(defmodule ep-handler
+(defmodule toppage-handler
   (doc "Echo POST handler.")
   ;; Cowboy handler
   (export (init 2)))
